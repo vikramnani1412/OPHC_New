@@ -1,12 +1,16 @@
 package patientObjectRepository;
 
+import java.time.Duration;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import genericUtilities.WebDriverUtility;
 
@@ -90,59 +94,88 @@ public class RazorpayNetBankingPage {
 	
 	// Business Library
 	
-	public void bookSlotUsingSBIbank(WebDriver driver) throws Exception
-	{
-		WebDriverUtility wUtil = new WebDriverUtility();
-		
-		SBILnk.click();
-		Thread.sleep(2000);
-        
-		try 
-		{
-			WebElement PaymentDeclined = driver.findElement(By.xpath("//div[.='Payment could not be completed']"));
-			if(PaymentDeclined.isDisplayed())
-			{
-				driver.findElement(By.xpath("//button[contains(@class,'absolute')]")).click();
-				Thread.sleep(2000);
-				driver.findElement(By.xpath("//button[@title='Close Checkout']")).click();
-				Thread.sleep(2000);
-				driver.findElement(By.xpath("//button[.='Yes, exit']")).click();
-				Thread.sleep(2000);
-				driver.findElement(By.xpath("//h6[.='OPHC Wallet']")).click();
-				Thread.sleep(2000);
-				driver.findElement(By.xpath("//button[.=' Continue ']")).click();
-				Thread.sleep(2000);
-				driver.findElement(By.xpath("//h6[.='OPHC Wallet']")).click();
-				Thread.sleep(2000);
-				driver.findElement(By.xpath("//button[.=' Continue ']")).click();
-				Thread.sleep(2000);
-				
-			}
-		} 
-		catch (Exception e) 
-		{
-			Thread.sleep(2000);
-		}
-		
-        String ParentWin = driver.getWindowHandle();
-		
-		Set<String> ChildWins = driver.getWindowHandles();
-		
-		for(String ChildWin : ChildWins)
-		{
-			if(!ChildWin.equals(ParentWin))
-			{
-			    driver.switchTo().window(ChildWin);
-			    WebElement Success = driver.findElement(By.xpath("//button[.='Success']"));
-			    wUtil.waitAndClick(driver, Success);
-			    Thread.sleep(1000);
-			    Success.click();
-			}
-		}
-		Thread.sleep(2000);
-		driver.switchTo().window(ParentWin);
-        
+	public void bookSlotUsingSBIbank(WebDriver driver) throws Exception {
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+	    // Store parent window BEFORE clicking SBI
+	    String parentWindow = driver.getWindowHandle();
+
+	    // Store existing windows
+	    Set<String> oldWindows = driver.getWindowHandles();
+
+	    // Click SBI
+	    wait.until(ExpectedConditions.elementToBeClickable(SBILnk)).click();
+
+//	    // Wait for new window if SBI opens one
+//	    wait.until(driver -> driver.getWindowHandles().size() > oldWindows.size());
+
+	    // Find newly opened window
+	    Set<String> newWindows = driver.getWindowHandles();
+
+	    for (String window : newWindows) {
+
+	        if (!oldWindows.contains(window)) {
+
+	            driver.switchTo().window(window);
+
+	            System.out.println("Switched to SBI window");
+
+	            break;
+	        }
+	    }
+
+	    // Now handle SBI/payment page
+	    try {
+
+	        WebElement paymentDeclined = new WebDriverWait(
+	                driver, Duration.ofSeconds(5))
+	                .until(ExpectedConditions.visibilityOfElementLocated(
+	                        By.xpath("//div[.='Payment could not be completed']")
+	                ));
+
+	        if (paymentDeclined.isDisplayed()) {
+
+	            System.out.println("Payment Declined");
+
+	            wait.until(ExpectedConditions.elementToBeClickable(
+	                    By.xpath("//button[contains(@class,'absolute')]")
+	            )).click();
+
+	            wait.until(ExpectedConditions.elementToBeClickable(
+	                    By.xpath("//button[@title='Close Checkout']")
+	            )).click();
+
+	            wait.until(ExpectedConditions.elementToBeClickable(
+	                    By.xpath("//button[.='Yes, exit']")
+	            )).click();
+	        }
+
+	    } catch (TimeoutException e) {
+
+	        System.out.println("Payment Declined message not displayed.");
+	    }
+
+	    // Find Success button AFTER switching to SBI window
+	    WebElement successBtn = wait.until(
+	            ExpectedConditions.elementToBeClickable(
+	                    By.xpath("//button[normalize-space()='Success']")
+	            )
+	    );
+
+	    successBtn.click();
+
+	    System.out.println("Success button clicked.");
+
+	    // Switch back to OPHC parent window
+	    if (driver.getWindowHandles().contains(parentWindow)) {
+	        driver.switchTo().window(parentWindow);
+	    }
 		
 	}
 
 }
+
+
+
+

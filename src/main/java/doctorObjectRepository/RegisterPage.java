@@ -185,8 +185,8 @@ public class RegisterPage {
 				Thread.sleep(2000);
 				PhoneEdt.sendKeys(jUtil.getRandomMobileNum());
 				Thread.sleep(2000);
-				SameAsMobileNumberCheckBox.click();
-				Thread.sleep(2000);
+//				SameAsMobileNumberCheckBox.click();
+//				Thread.sleep(2000);
 				TermsAndConditionsCheckBox.click();
 				Thread.sleep(2000);
 				SignUpBtn.click();

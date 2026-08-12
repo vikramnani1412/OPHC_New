@@ -101,7 +101,7 @@ public class Total {
 
         fakeName     = jUtil.getRandomSingleName().trim().split(" ")[0];
         firstName    = jUtil.getRandomSingleName().trim().split(" ")[0];
-        mobileNumber = jUtil.getRandomMobileNum();
+        mobileNumber = eUtil.readDataFromExcel("Doctor", 27, 1);
 
         DataStore.doctorName   = fakeName;
         DataStore.mobileNumber = mobileNumber;
@@ -122,8 +122,7 @@ public class Total {
         lPage.getRegisterLnk().click();
 
         RegisterPage rPage = new RegisterPage(driver);
-        rPage.RegisterToDoctorApplication(driver, DataStore.doctorName,
-                fakeName + "@gmail.com", mobileNumber);
+        rPage.RegisterToDoctorApplication(driver, fakeName , fakeName + "@gmail.com", mobileNumber);
 
         System.out.println(fakeName + "  " + mobileNumber);
 
