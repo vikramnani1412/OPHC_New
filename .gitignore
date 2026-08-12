@@ -1,0 +1,27 @@
+# Maven build output
+/target/
+
+# Eclipse project metadata
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# TestNG default output directory
+/test-output/
+
+# ExtentReports / custom report output
+/reports/
+/test-reports/
+*.html.bak
+
+# Log files (Log4j2 rolling file appender output, if written to project root)
+/logs/
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
