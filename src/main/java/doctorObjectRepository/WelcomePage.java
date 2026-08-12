@@ -161,9 +161,12 @@ public class WelcomePage {
 
     public void logoutOfApp(WebDriver driver) throws Exception
     {
+    	Thread.sleep(2000);
     	ProfileImg.click();
+    	Thread.sleep(2000);
     	DoctorProfilePage dpPage = new DoctorProfilePage(driver);
     	dpPage.clickOnLogoutLnk();
+    	Thread.sleep(2000);
     	LogoutPage lPage = new LogoutPage(driver);
     	lPage.clickOnYesLogoutBtn();
     }

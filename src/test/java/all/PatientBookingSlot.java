@@ -23,7 +23,7 @@ public class PatientBookingSlot extends PatientBaseClass {
 	WebDriverUtility wUtil = new WebDriverUtility();
 	JavaUtility jUtil = new JavaUtility();
 	
-	@Test(priority = 2)
+	@Test()
 	void PatientBookingSlotTest() throws Exception
 	{	
         FindDoctorsPage fdocPage = new FindDoctorsPage(driver);

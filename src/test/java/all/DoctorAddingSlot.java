@@ -22,7 +22,7 @@ import patientObjectRepository.UploadMedicalReportsAfterAppointmentConfirmPage;
 @Listeners(genericUtilities.ListenersImplementationClass.class)
 public class DoctorAddingSlot extends DoctorBaseClass {
 	
-	@Test(priority = 1)
+	@Test(priority = 1, groups = {"slotCreation"})
 	public void doctorAddingSlot() throws Exception
 	{
 		WelcomePage wPage = new WelcomePage(driver);

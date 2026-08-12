@@ -64,8 +64,8 @@ public class DoctorDetailsPage {
 		
 		Thread.sleep(2000);
 		BookAppointmentBtn.click();
-		Thread.sleep(2000);
 		wUtil.scrollPageDown(2);
+		Thread.sleep(2000);
 		FrstAvailableSlot.click();
 		Thread.sleep(2000);
 		wUtil.scrollToParticularWebElement(driver, AfterSlotSelectionBookAppointmentBtn);

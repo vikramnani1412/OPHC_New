@@ -106,6 +106,7 @@ public class PatientProfilePage {
 		PatientProfileIcon.click();
 		wUtil.waitForElementToBeClickable(null, LogoutLnk);
 		LogoutLnk.click();
+		System.out.println("Patient Logout Successfull");
 	}
 	
 	public void patientBookingDoctor(WebDriver driver, String DoctorName) throws Exception

@@ -53,7 +53,7 @@ public class UploadMedicalReportsAfterAppointmentConfirmPage {
 		Thread.sleep(2000);
 		String medicalReportImage = eUtil.generateSampleMedicalReport("C:\\TestData\\", "MedicalReport", "Doctor", 6, 4);
 		
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		UploadZone.sendKeys(medicalReportImage);
 		Thread.sleep(2000);
 		wUtil.waitForElementToBeVisible(driver, SubmitBtn);

@@ -22,7 +22,9 @@ public class FindDoctorsPage {
     
     @FindBy(xpath="(//h6[contains(.,'Dr')])[1]")private WebElement FirstDoctor;//h6[.='']
     
-    @FindBy(xpath="//h6[contains(.,'xyug')]/../../following-sibling::div//button[.=' Book Now ']")private WebElement BookNowBtnBasedOnDoctorName;
+    @FindBy(xpath="//h6[.='Dr. xyug']")private WebElement DoctorXyugProfileName;
+  
+    @FindBy(xpath="//h6[contains(.,'xyug')]/../../following-sibling::div//button[.=' Book Now ']")private WebElement DoctorXyugBookNowBtn;
     
     @FindBy(xpath="(//h6[contains(.,'Dr')])[1]/../../following-sibling::div//button[.='Book Now']")private WebElement FirstDoctorBookNowBtn;
   
@@ -70,9 +72,13 @@ public class FindDoctorsPage {
     public WebElement getFirstDoctorBookNowBtn() {
         return FirstDoctorBookNowBtn;
     }
+    
+    public WebElement getDoctorXyugProfileName() {
+		return DoctorXyugProfileName;
+	}
 
-    public WebElement getBookNowBtnBasedOnDoctorName() {
-        return BookNowBtnBasedOnDoctorName;
+	public WebElement getDoctorXyugBookNowBtn() {
+        return DoctorXyugBookNowBtn;
     }
 
     
@@ -81,10 +87,10 @@ public class FindDoctorsPage {
     public void selectingDoctor() throws Exception
     {
         Thread.sleep(2000);
-        String DoctorName = BookNowBtnBasedOnDoctorName.getText();
+        String DoctorName = DoctorXyugProfileName.getText();
         System.out.println("Patient searching for Doctor : "+DoctorName);
         Thread.sleep(2000);
-        BookNowBtnBasedOnDoctorName.click();
+        DoctorXyugBookNowBtn.click();
     }
 	
 }
