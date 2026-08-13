@@ -65,7 +65,6 @@ public class WelcomePage {
     
     
     
-    
     //Rule-2:Create a constructor to initilise these elements
     
     public WelcomePage(WebDriver driver)
@@ -194,6 +193,7 @@ public class WelcomePage {
 //        wUtil.scrollToParticularWebElement(driver, AddSlotBtn);
         Thread.sleep(2000);
         AddSlotBtn.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@class='slot-item ng-star-inserted'])[1]")));
         Thread.sleep(2000);
         FirstAvailableSlotInSelectTimeSlotPage.click();
         Thread.sleep(2000);

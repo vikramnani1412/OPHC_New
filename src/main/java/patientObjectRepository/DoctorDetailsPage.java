@@ -19,6 +19,8 @@ public class DoctorDetailsPage {
 	
     @FindBy(xpath="//div[@class='time-slot-card available ng-star-inserted']")private WebElement FrstAvailableSlot;
     
+    @FindBy(xpath="(//span[.='Available'])[1]")private WebElement FrstAvailableSlott;
+    
     @FindBy(xpath="//button[contains(.,' Book Appointment')]")private WebElement AfterSlotSelectionBookAppointmentBtn;
 	
     
@@ -47,6 +49,11 @@ public class DoctorDetailsPage {
 	}
 
 
+	public WebElement getFrstAvailableSlott() {
+		return FrstAvailableSlott;
+	}
+
+
 	public WebElement getFrstAvailableSlot() {
 		return FrstAvailableSlot;
 	}
@@ -64,7 +71,8 @@ public class DoctorDetailsPage {
 		
 		Thread.sleep(2000);
 		BookAppointmentBtn.click();
-		wUtil.scrollPageDown(2);
+		Thread.sleep(2000);
+		wUtil.scrollToParticularWebElement(driver, FrstAvailableSlot);
 		Thread.sleep(2000);
 		FrstAvailableSlot.click();
 		Thread.sleep(2000);
