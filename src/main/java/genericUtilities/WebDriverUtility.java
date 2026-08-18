@@ -370,6 +370,39 @@ public class WebDriverUtility {
 	}
 
 	/**
+	 * This method will wait until clicking the element
+	 * vertical (Y) offset.
+	 * @param driver
+	 * @param element
+	 */
+	public void waitUntilElementToBeClickableUsingJavaScriptExecutor(WebDriver driver, WebElement element) {
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+	    // Wait until element is visible
+	    wait.until(ExpectedConditions.visibilityOf(element));
+
+	    // Scroll element to center of the screen
+	    ((JavascriptExecutor) driver).executeScript(
+	            "arguments[0].scrollIntoView({block:'center', inline:'nearest'});",
+	            element
+	    );
+
+	    // Wait until element is clickable
+	    wait.until(ExpectedConditions.elementToBeClickable(element));
+
+	    // Small wait for UI/Angular rendering
+	    try {
+	        Thread.sleep(500);
+	    } catch (InterruptedException e) {
+	        Thread.currentThread().interrupt();
+	    }
+
+	    // Click the element
+	    element.click();
+	}
+	
+	/**
 	 * This method will return current date formatted as dd/MM/yyyy
 	 * @return formatted date string
 	 */

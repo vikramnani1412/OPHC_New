@@ -225,7 +225,7 @@ public class UpdatedOphc {
             System.out.println("========================================");
 
         } finally {
-            driver.quit();
+//            driver.quit();
         }
     }
 
@@ -268,7 +268,7 @@ public class UpdatedOphc {
             System.out.println("Registered Doctor Rejected by Admin");
 
         } finally {
-            driver.quit();
+//            driver.quit();
         }
     }
 
@@ -371,9 +371,10 @@ public class UpdatedOphc {
             if (!anyUploaded) {
                 System.out.println("WARNING: Re-Upload banner was shown but no individual document matched — check locator/label text against the live DOM.");
             }
-
             DocumentUploadPage duPage = new DocumentUploadPage(driver);
-            duPage.getSubmitDocumentsBtn().click();
+            Thread.sleep(2000);
+            
+            wUtil.waitUntilElementToBeClickableUsingJavaScriptExecutor(driver, duPage.getSubmitDocumentsBtn());
             Thread.sleep(2000);
 
             ProfileUnderVerificationPage puvPage = new ProfileUnderVerificationPage(driver);
@@ -382,10 +383,14 @@ public class UpdatedOphc {
             System.out.println("Re Submission Completed");
 
         } finally {
-            driver.quit();
+//            driver.quit();
         }
     }
 
+    
+    // HAVE TO CHECK FROM HERE
+    
+    
     // AdminApprovingNewlyAddedDoctorTest
     @Test(dependsOnMethods = "RejectedDoctorReuploadingDocumentsTest")
     public void AdminApprovingNewlyAddedDoctorTest() throws Throwable {
@@ -425,7 +430,7 @@ public class UpdatedOphc {
             System.out.println("Registered Doctor Approved by Admin");
 
         } finally {
-            driver.quit();
+//            driver.quit();
         }
     }
 
@@ -454,7 +459,7 @@ public class UpdatedOphc {
             System.out.println("Doctor Availability Slot Added Successfully");
 
         } finally {
-            driver.quit();
+//            driver.quit();
         }
     }
 
@@ -557,7 +562,7 @@ public class UpdatedOphc {
             pPage.getLogoutLnk().click();
 
         } finally {
-            driver.quit();
+//            driver.quit();
         }
     }
 }
