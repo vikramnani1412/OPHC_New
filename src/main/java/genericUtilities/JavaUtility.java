@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
+import org.testng.annotations.DataProvider;
+
 import net.datafaker.Faker;
 
 /**
@@ -323,6 +326,41 @@ public class JavaUtility {
      */
     public String getTodaysDate() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+    
+    @DataProvider(name = "mobileNumbers")
+    public Object[][] mobileNumbers() throws Exception {
+
+        ExcelFileUtility eUtil = new ExcelFileUtility();
+
+        List<String> mobileNumbers = new ArrayList<>();
+
+        // Read mobile numbers from row 27 to row 35, column 1
+        for (int row = 27; row <= 35; row++) {
+
+            String mobileNumber =
+                    eUtil.readDataFromExcel("Doctor", row, 1);
+
+            if (mobileNumber != null && !mobileNumber.trim().isEmpty()) {
+
+                mobileNumbers.add(mobileNumber.trim());
+
+                System.out.println(
+                        "Mobile Number from Excel Row " + row +
+                        " : " + mobileNumber
+                );
+            }
+        }
+
+        if (mobileNumbers.isEmpty()) {
+            throw new Exception(
+                    "No mobile numbers found in Excel rows 27 to 35."
+            );
+        }
+
+        return new Object[][] {
+            { mobileNumbers }
+        };
     }
     
 }

@@ -22,9 +22,9 @@ public class FindDoctorsPage {
     
     @FindBy(xpath="(//h6[contains(.,'Dr')])[1]")private WebElement FirstDoctor;//h6[.='']
     
-    @FindBy(xpath="//h6[.='Dr. xyug']")private WebElement DoctorXyugProfileName;
+    @FindBy(xpath="//h6[.='Dr. Xyug']")private WebElement DoctorXyugProfileName;
   
-    @FindBy(xpath="//h6[contains(.,'xyug')]/../../following-sibling::div//button[.=' Book Now ']")private WebElement DoctorXyugBookNowBtn;
+    @FindBy(xpath="//h6[contains(.,'Xyug')]/../../following-sibling::div//button[.=' Book Now ']")private WebElement DoctorXyugBookNowBtn;
     
     @FindBy(xpath="(//h6[contains(.,'Dr')])[1]/../../following-sibling::div//button[.='Book Now']")private WebElement FirstDoctorBookNowBtn;
   

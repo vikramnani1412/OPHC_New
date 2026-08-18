@@ -104,7 +104,7 @@ public class Sprint_1_Positive {
         lPage.getRegisterLnk().click();
 
         RegisterPage rPage = new RegisterPage(driver);
-        rPage.RegisterToDoctorApplication(driver, fakeName, fakeName + "@gmail.com", mobileNumber);
+        rPage.RegisterToDoctorApplicationn(driver, fakeName, fakeName + "@gmail.com", mobileNumber);
 
         VerifyCodePage vcPage = new VerifyCodePage(driver);
         vcPage.enteringOtpAndClickOnVerifyBtn(driver);

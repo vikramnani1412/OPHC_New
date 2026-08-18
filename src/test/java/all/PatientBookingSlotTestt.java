@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import genericUtilities.ExcelFileUtility;
 import genericUtilities.JavaUtility;
 import genericUtilities.PatientBaseClass;
+import genericUtilities.RetryAnalyzer;
 import genericUtilities.WebDriverUtility;
 import patientObjectRepository.AppointmentConfirmedPage;
 import patientObjectRepository.AppointmentsPage;
@@ -18,12 +19,12 @@ import patientObjectRepository.RazorpayOPHC;
 import patientObjectRepository.UploadMedicalReportsAfterAppointmentConfirmPage;
 
 @Listeners(genericUtilities.ListenersImplementationClass.class)
-public class PatientBookingSlot extends PatientBaseClass {
+public class PatientBookingSlotTestt extends PatientBaseClass {
 
 	WebDriverUtility wUtil = new WebDriverUtility();
 	JavaUtility jUtil = new JavaUtility();
 	
-	@Test()
+	@Test (priority = 2)
 	void PatientBookingSlotTest() throws Exception
 	{	
         FindDoctorsPage fdocPage = new FindDoctorsPage(driver);

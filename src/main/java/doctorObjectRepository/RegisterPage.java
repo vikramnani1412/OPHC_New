@@ -2,6 +2,7 @@ package doctorObjectRepository;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,6 +39,8 @@ public class RegisterPage {
     @FindBy(xpath="//div[.=' An account with this email already exists. Please login.']")private WebElement AccountExistMsgTxt;
     
     @FindBy(xpath="//span[.=' Close ']")private WebElement CloseBtn;
+    
+    @FindBy(xpath="//div[contains(text(),'An account ')]")private WebElement ExistMsg;
     
     @FindBy(xpath="//label[.=' Full Name ']/following-sibling::div[.=' Full Name is required ']")private WebElement FullNameError;
     
@@ -113,6 +116,11 @@ public class RegisterPage {
 	}
 
 
+	public WebElement getExistMsg() {
+		return ExistMsg;
+	}
+
+
 	public WebElement getFullNameError() {
 		return FullNameError;
 	}
@@ -149,7 +157,86 @@ public class RegisterPage {
 	
 	//Business Library
 	
-	public void RegisterToDoctorApplication(WebDriver driver, String FullName , String Email, String PhoneNumber) throws Exception
+	public String RegisterToDoctorApplication(WebDriver driver, String fullName, String email, List<String> mobileNumbers) throws Exception 
+	{
+	    for (String phoneNumber : mobileNumbers) {
+
+	        System.out.println("----------------------------------------");
+	        System.out.println("Trying Mobile Number : " + phoneNumber);
+	        System.out.println("----------------------------------------");
+
+	        Thread.sleep(2000);
+
+	        FullNameEdt.clear();
+	        FullNameEdt.sendKeys(fullName);
+
+	        Thread.sleep(1000);
+
+	        EmailEdt.clear();
+	        EmailEdt.sendKeys(email);
+
+	        Thread.sleep(1000);
+
+	        PhoneEdt.clear();
+	        PhoneEdt.sendKeys(phoneNumber);
+
+	        Thread.sleep(1000);
+
+	        // Click checkbox only if it is not already selected
+	        if (!SameAsMobileNumberCheckBox.isSelected()) {
+	            SameAsMobileNumberCheckBox.click();
+	        }
+
+	        Thread.sleep(1000);
+
+	        if (!TermsAndConditionsCheckBox.isSelected()) {
+	        	TermsAndConditionsCheckBox.click();
+	        }
+
+	        Thread.sleep(1000);
+
+	        SignUpBtn.click();
+
+	        Thread.sleep(2000);
+
+	        try {
+
+	            // Check whether mobile number already exists
+	            if (ExistMsg.isDisplayed()) {
+
+	                System.out.println(
+	                        "Mobile Number Already Exists : "
+	                                + phoneNumber
+	                );
+
+	                CloseBtn.click();
+
+	                Thread.sleep(1000);
+
+	                // Try next mobile number
+	                continue;
+	            }
+
+	        } catch (Exception e) {
+
+	            // ExistMsg not displayed = registration accepted
+	            System.out.println(
+	                    "Unique Mobile Number Accepted : "
+	                            + phoneNumber
+	            );
+
+	            return phoneNumber;
+	        }
+	    }
+
+	    // All mobile numbers already exist
+	    throw new Exception(
+	            "No unique mobile numbers found. " +
+	            "All mobile numbers from Excel rows 27 to 35 already exist."
+	    );
+	}
+	
+	public void RegisterToDoctorApplicationn(WebDriver driver, String FullName , String Email, String PhoneNumber) throws Exception
 	{
 		WebDriverUtility wUtil = new WebDriverUtility();
 		JavaUtility jUtil = new JavaUtility();
@@ -170,9 +257,11 @@ public class RegisterPage {
 		SignUpBtn.click();
 		Thread.sleep(2000);
 		try {
-			if(CloseBtn.isDisplayed())
+			if(ExistMsg.isDisplayed())
 			{
+				Thread.sleep(2000);
 				CloseBtn.click();
+				Thread.sleep(2000);
 				FullNameEdt.clear();
 				Thread.sleep(2000);
 				FullNameEdt.sendKeys(Name);
@@ -187,8 +276,8 @@ public class RegisterPage {
 				Thread.sleep(2000);
 //				SameAsMobileNumberCheckBox.click();
 //				Thread.sleep(2000);
-				TermsAndConditionsCheckBox.click();
-				Thread.sleep(2000);
+//				TermsAndConditionsCheckBox.click();
+//				Thread.sleep(2000);
 				SignUpBtn.click();
 			}
 		} catch (Exception e) {

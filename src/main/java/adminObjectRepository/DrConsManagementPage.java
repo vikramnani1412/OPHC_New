@@ -15,6 +15,7 @@ public class DrConsManagementPage {
     
     @FindBy(xpath="")private WebElement DashboardIcon;
     	
+    @FindBy(xpath="//span[.=' Close ']")private WebElement CloseBtn;
   
 	//Rule-3:Create a constructor to initilise these elements
     
@@ -26,4 +27,19 @@ public class DrConsManagementPage {
 
 	//Rule-4:Provide getters to access these variables
 	
+	public WebElement getDoctorIcon() {
+		return DoctorIcon;
+	}
+
+	public WebElement getPatientIcon() {
+		return PatientIcon;
+	}
+
+	public WebElement getDashboardIcon() {
+		return DashboardIcon;
+	}
+
+	public WebElement getCloseBtn() {
+		return CloseBtn;
+	}
 }

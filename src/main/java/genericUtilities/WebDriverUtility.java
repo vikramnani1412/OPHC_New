@@ -420,6 +420,12 @@ public class WebDriverUtility {
 		Actions act = new Actions(driver);
 		act.moveToElement(element).perform();
 	}
+	
+	public void clickOnParticularWebElementUsingActionsClass(WebDriver driver, WebElement element)
+	{
+		Actions act = new Actions(driver);
+		act.moveToElement(element).click().perform();
+	}
 
 	/**
 	 * This method is used to upload a file via a file input element

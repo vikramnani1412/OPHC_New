@@ -8,6 +8,7 @@ import doctorObjectRepository.WelcomePage;
 import genericUtilities.DoctorBaseClass;
 import genericUtilities.ExcelFileUtility;
 import genericUtilities.JavaUtility;
+import genericUtilities.RetryAnalyzer;
 import genericUtilities.WebDriverUtility;
 import patientObjectRepository.AppointmentConfirmedPage;
 import patientObjectRepository.AppointmentsPage;
@@ -20,9 +21,9 @@ import patientObjectRepository.RazorpayOPHC;
 import patientObjectRepository.UploadMedicalReportsAfterAppointmentConfirmPage;
 
 @Listeners(genericUtilities.ListenersImplementationClass.class)
-public class DoctorAddingSlot extends DoctorBaseClass {
+public class DoctorAddingSlotTest extends DoctorBaseClass {
 	
-	@Test(priority = 1, groups = {"slotCreation"})
+	@Test(priority = 1)
 	public void doctorAddingSlot() throws Exception
 	{
 		WelcomePage wPage = new WelcomePage(driver);
@@ -31,5 +32,5 @@ public class DoctorAddingSlot extends DoctorBaseClass {
 	}
 	
 	
-	
+
 }

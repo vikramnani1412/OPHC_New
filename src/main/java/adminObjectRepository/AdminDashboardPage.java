@@ -10,11 +10,11 @@ public class AdminDashboardPage {
 
 	//Finding WebElements Using @FindBy Annotations
 
-    @FindBy(xpath="//img[@src='./../../../assets/InitialImg/doctor.jpg']")private WebElement DoctorIcon;
+    @FindBy(xpath="//img[@alt='Child Patient']")private WebElement DoctorIcon;
     
-    @FindBy(xpath="//img[@src='./../../../assets/InitialImg/patient.jpg']")private WebElement PatientIcon;
+    @FindBy(xpath="//img[@alt='Medical Team']")private WebElement PatientIcon;
     
-    @FindBy(xpath="//img[@src='./../../../assets/InitialImg/dash.jpg']")private WebElement DashboardIcon;
+    @FindBy(xpath="//img[@alt='Data Analytics']")private WebElement DashboardIcon;
     
     @FindBy(xpath="//p[.=' Logout ']")private WebElement LogoutLnk;
     

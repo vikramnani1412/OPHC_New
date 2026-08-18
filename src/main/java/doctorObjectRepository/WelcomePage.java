@@ -189,8 +189,6 @@ public class WelcomePage {
         wUtil.scrollExactToParticularWebElement(driver, AddSlotBtn);
         Thread.sleep(2000);
         Todayy.click();
-//        Thread.sleep(2000);
-//        wUtil.scrollToParticularWebElement(driver, AddSlotBtn);
         Thread.sleep(2000);
         AddSlotBtn.click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@class='slot-item ng-star-inserted'])[1]")));

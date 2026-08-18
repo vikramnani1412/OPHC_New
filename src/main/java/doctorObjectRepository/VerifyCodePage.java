@@ -22,6 +22,10 @@ public class VerifyCodePage {
 //    @FindBys({@FindBy(tagName = "input"), @FindBy(id = "username")})
     @FindBy(xpath="(//input[@inputmode='numeric'])[1]")private WebElement OtpFirstBox;
     
+    @FindBy(xpath = "//div[contains(text(),'Invalid OTP code')]")private WebElement InvalidOTPTxt;
+    
+//    @FindBy(xpath="(//div[contains(.,'Invalid OTP code')])[8]")private WebElement InvalidOTPTxt;
+    
     @FindBy(xpath="//a[.=' Resend ']")private WebElement ResendLnk;
     
     @FindBy(xpath="//button[.=' Verify ']")private WebElement VerifyBtn;
@@ -41,6 +45,11 @@ public class VerifyCodePage {
 	}
 
 
+	public WebElement getInvalidOTPTxt() {
+		return InvalidOTPTxt;
+	}
+
+
 	public WebElement getResendLnk() {
 		return ResendLnk;
 	}
@@ -51,21 +60,32 @@ public class VerifyCodePage {
 	}
 	
 	//Business Library
-	public void enteringOtpAndClickOnVerifyBtn(WebDriver driver) throws Exception
-	{
-		Thread.sleep(2000);
-		OtpFirstBox.sendKeys("123456");
-		Thread.sleep(2000);
-		
-		Actions action = new Actions(driver);
+	public void enteringOtpAndClickOnVerifyBtn(WebDriver driver) throws Exception {
+	    WebDriverUtility wUtil = new WebDriverUtility();
 
-		action.moveToElement(VerifyBtn)
-		      .click()
-		      .build()
-		      .perform();
-		
-//		VerifyBtn.click();
-//		Thread.sleep(2000);
+	    Thread.sleep(2000);
+	    OtpFirstBox.sendKeys("123456");
+	    Thread.sleep(2000);
+
+	    // Click Verify button using WebDriverUtility
+	    wUtil.waitForElementToBeClickable(driver, VerifyBtn);
+	    VerifyBtn.click();
+	    Thread.sleep(2000);
+
+	    // Safely verify whether "Invalid OTP" message appeared
+	    boolean isInvalid = false;
+	    try {
+	        isInvalid = InvalidOTPTxt.isDisplayed();
+	    } catch (org.openqa.selenium.NoSuchElementException e) {
+	        // Element is absent from DOM -> OTP was valid
+	        isInvalid = false;
+	    }
+
+	    if (isInvalid) {
+	        System.out.println("Invalid OTP entered");
+	    } else {
+	        System.out.println("OTP Accepted");
+	    }
 	}
 	
 	
@@ -86,6 +106,7 @@ public class VerifyCodePage {
 		Thread.sleep(2000);
 		OtpFirstBox.sendKeys("123456");
 		Thread.sleep(2000);
+		wUtil.waitForElementToBeClickable(driver, VerifyBtn);
 		VerifyBtn.click();
 		Thread.sleep(2000);
 	}

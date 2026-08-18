@@ -45,7 +45,10 @@ public class DrKycManagementPage {
     @FindBy(xpath="//a[.='Next']")private WebElement NextPageLnk;
     
     @FindBy(xpath="//p[.=' Logout ']")private WebElement LogoutLnk;
+    
+    @FindBy(xpath="//button[.=' Documents ']")private WebElement DocumentsBtn;
   
+    @FindBy(xpath="//button[.=' Details ']")private WebElement DetailsBtn;
 	//Rule-3:Create a constructor to initilise these elements
     
 	public DrKycManagementPage(WebDriver driver)
@@ -130,9 +133,11 @@ public class DrKycManagementPage {
 
 	public void ComparingNewlyRegisteredDoctorAndFirstDoctorInAdminPannelAndClickPreviewBtn(WebDriver driver, String NewlyRegisteredDoctor, int DoctorNumber) throws Exception
 	{
-		String firstDoctorName = FrstDoctorName.getText();
+//		String firstDoctorName = FrstDoctorName.getText();
 	    Thread.sleep(2000);
 		driver.findElement(By.xpath("//td[.='"+DoctorNumber+"']/following-sibling::td/button[.='Preview']")).click();
+		Thread.sleep(2000);
+		DocumentsBtn.click();
 	}
 	
 	public void clickOnFrstDoctorPreviewButton(WebDriver driver)

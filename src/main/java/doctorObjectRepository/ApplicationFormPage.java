@@ -28,41 +28,37 @@ public class ApplicationFormPage {
     
     @FindBy(xpath="//input[@formcontrolname='smcRegistrationNumber']")private WebElement StateMedicalCouncilRegistrationNoEdt;
     
+    @FindBy(xpath="(//div[.=' Select State Council '])[2]")private WebElement StateMedicalCouncilDrpdwn;
+    
     @FindBy(xpath="//input[@formcontrolname='nmcNumber']")private WebElement NmcNumberEdt;
     
-    @FindBy(xpath="//div[@class='custom-dropdown']/div[.=' Select Experience ']")private WebElement ExperianceDrpDwn;
+    @FindBy(xpath="(//div[.=' Select Graduation Degree '])[2]")private WebElement GraduationDegreeDrpDwn;
     
-    @FindBy(xpath="//label[.=' Post Graduation Degree ']/following-sibling::div/div[.=' Select PG ']")private WebElement PostGraduationDegreeDrpDwn;
+    @FindBy(xpath="(//div[.=' Select PG '])[2]")private WebElement PostGraduationDegreeDrpDwn;
     
     @FindBy(xpath="//div[@class='custom-dropdown']/div[.=' Select Specialization ']")private WebElement SpecializationDrpdwn;
     
-    @FindBy(xpath="//label[.=' Super Specialization Degree ']/following-sibling::div/div[.=' Select Super Specialisty Qualification ']")private WebElement SuperSpecializationDegreeDwn;
+    @FindBy(xpath="//label[.=' Super Specialization Degree ']/following-sibling::div/div[.=' Select Super Specialisty Qualification ']")private WebElement SuperSpecializationDegreeDrpdwn;
     
     @FindBy(xpath="//label[.=' Super Specialization ']/following-sibling::div/div[.=' Select Super Specialization ']")private WebElement SuperSpecializationDrpdwn;
     
-    @FindBy(xpath="//input[@formcontrolname='qualification']")private WebElement QualificationEdt;
+    @FindBy(xpath="//input[@formcontrolname='additionalQualification']")private WebElement AdditionalQualificationEdt;
     
-    @FindBy(xpath="//label[.=' Languages Spoken ']/following-sibling::div/div[.=' Select Languages ']")private WebElement LanguagesDrpdwn;
+    @FindBy(xpath="//div[@class='custom-dropdown']/div[.=' Select Experience ']")private WebElement ExperianceDrpDwn;
     
-    @FindBy(xpath="//div[@class='custom-dropdown']/div[.=' Select Year ']")private WebElement YearOfAdmissionDrpdwn;
+    @FindBy(xpath="//label[text()=' Languages Spoken ']/following-sibling::div/div[.=' Select Languages ']")private WebElement LanguagesDrpdwn;
     
-    @FindBy(xpath="//input[@formcontrolname='hospital']")private WebElement CurrentHospitalOrClinicEdt;
+    @FindBy(xpath="//input[@placeholder='Enter hospital/clinic name']")private WebElement CurrentHospitalEdt;
     
-    @FindBy(xpath="//input[@formcontrolname='expertise']")private WebElement ExpertiseEdt;
+    @FindBy(xpath="//input[@formcontrolname='consultationFees']")private WebElement ExpectedConsultationFees;
+    
+    @FindBy(xpath="//textarea[@formcontrolname='expertise']")private WebElement ExpertiseEdt;
     
     @FindBy(xpath="//div[@data-placeholder='Enter about yourself...']")private WebElement AboutYourselfTextarea;
-  
-    @FindBy(xpath="//h6[.='After (AI Enhanced)']/following-sibling::img")private WebElement AiImage;
-  
+    
     @FindBy(xpath="//div[.=' Submit ']")private WebElement SubmitBtn;
     
-    @FindBy(xpath="//span[.=' Close ']")private WebElement NegativeCloseBtn;
     
-    @FindBy(xpath="//div[.=' NMC Number must be at least 5 characters ']")private WebElement NMCMoreThanFiveCharsError;
-    
-    @FindBy(xpath="//div[.=' NMC Number is required ']")private WebElement NMCnumberRequiredError;
-  
-  
 	//Rule-3:Create a constructor to initilise these elements    
     
 	public ApplicationFormPage(WebDriver driver)
@@ -76,7 +72,8 @@ public class ApplicationFormPage {
 	public WebElement getChooseFileBtn() {
 		return ChooseFileBtn;
 	}
-	
+
+
 	public WebElement getInputFile() {
 		return InputFile;
 	}
@@ -86,24 +83,39 @@ public class ApplicationFormPage {
 		return PreviewAILookBtn;
 	}
 
-	public WebElement getDrProfileNameScrolling() {
-		return DrProfileNameScrolling;
-	}
-	
+
 	public WebElement getProfilePicDeleteBtn() {
 		return ProfilePicDeleteBtn;
 	}
+
+
+	public WebElement getDrProfileNameScrolling() {
+		return DrProfileNameScrolling;
+	}
+
 
 	public WebElement getFullNameEdt() {
 		return FullNameEdt;
 	}
 
+
+	public WebElement getStateMedicalCouncilRegistrationNoEdt() {
+		return StateMedicalCouncilRegistrationNoEdt;
+	}
+
+
+	public WebElement getStateMedicalCouncilDrpdwn() {
+		return StateMedicalCouncilDrpdwn;
+	}
+
+
 	public WebElement getNmcNumberEdt() {
 		return NmcNumberEdt;
 	}
 
-	public WebElement getStateMedicalCouncilRegistrationNoEdt() {
-		return StateMedicalCouncilRegistrationNoEdt;
+
+	public WebElement getGraduationDegreeDrpDwn() {
+		return GraduationDegreeDrpDwn;
 	}
 
 
@@ -112,8 +124,13 @@ public class ApplicationFormPage {
 	}
 
 
-	public WebElement getSuperSpecializationDegreeDwn() {
-		return SuperSpecializationDegreeDwn;
+	public WebElement getSpecializationDrpdwn() {
+		return SpecializationDrpdwn;
+	}
+
+
+	public WebElement getSuperSpecializationDegreeDrpdwn() {
+		return SuperSpecializationDegreeDrpdwn;
 	}
 
 
@@ -122,50 +139,28 @@ public class ApplicationFormPage {
 	}
 
 
-	public WebElement getLanguagesDrpdwn() {
-		return LanguagesDrpdwn;
+	public WebElement getAdditionalQualificationEdt() {
+		return AdditionalQualificationEdt;
 	}
 
-
-	public WebElement getAboutYourselfTextarea() {
-		return AboutYourselfTextarea;
-	}
-
-
-	public WebElement getSpecializationDrpdwn() {
-		return SpecializationDrpdwn;
-	}
 
 	public WebElement getExperianceDrpDwn() {
 		return ExperianceDrpDwn;
 	}
 
-	public WebElement getNegativeCloseBtn() {
-		return NegativeCloseBtn;
+
+	public WebElement getLanguagesDrpdwn() {
+		return LanguagesDrpdwn;
 	}
 
 
-	public WebElement getQualificationEdt() {
-		return QualificationEdt;
+	public WebElement getCurrentHospitalEdt() {
+		return CurrentHospitalEdt;
 	}
 
 
-	public WebElement getYearOfAdmissionDrpdwn() {
-		return YearOfAdmissionDrpdwn;
-	}
-
-	public WebElement getCurrentHospitalOrClinicEdt() {
-		return CurrentHospitalOrClinicEdt;
-	}
-
-
-	public WebElement getNMCMoreThanFiveCharsError() {
-		return NMCMoreThanFiveCharsError;
-	}
-
-
-	public WebElement getNMCnumberRequiredError() {
-		return NMCnumberRequiredError;
+	public WebElement getExpectedConsultationFees() {
+		return ExpectedConsultationFees;
 	}
 
 
@@ -174,15 +169,14 @@ public class ApplicationFormPage {
 	}
 
 
-	public WebElement getAiImage() {
-		return AiImage;
+	public WebElement getAboutYourselfTextarea() {
+		return AboutYourselfTextarea;
 	}
 
 
 	public WebElement getSubmitBtn() {
 		return SubmitBtn;
 	}
-	
 	
 	//Business Library
 	
@@ -194,79 +188,105 @@ public class ApplicationFormPage {
     	
     	String AboutYourself = eUtil.readDataFromExcel("Doctor", 24, 1);
     	
-        driver.findElement(By.xpath("//button[.='Choose File']")).click();
+    	System.out.println("Driver Entered Application Form Page waiting to click Choose File Btn");
+    	
+    	wUtil.waitForElementToBeClickable(driver, ChooseFileBtn);
+    	ChooseFileBtn.click();
+//        driver.findElement(By.xpath("//button[.='Choose File']")).click();
         
         Thread.sleep(2000);
-        
-        driver.findElement(By.xpath("//input[@type='file']")).sendKeys(ImagePath);
+        InputFile.sendKeys(ImagePath);
+//        driver.findElement(By.xpath("//input[@type='file']")).sendKeys(ImagePath);
         
         Thread.sleep(2000);
     	
     	wUtil.clickOnEscapeButton();
-		
-    	Thread.sleep(2000);
-    	
-    	wUtil.scrollToParticularWebElement(driver, DrProfileNameScrolling);
     	
     	Thread.sleep(2000);
-    	
     	String smcrn = String.valueOf(jUtil.getRandomNum());
-    	
     	StateMedicalCouncilRegistrationNoEdt.sendKeys(smcrn);
-    	Thread.sleep(2000);
     	
+    	Thread.sleep(2000);
+    	wUtil.scrollToParticularWebElement(driver, StateMedicalCouncilDrpdwn);
+    	
+    	Thread.sleep(2000);
+    	StateMedicalCouncilDrpdwn.click();
+    	driver.findElement(By.xpath("//li[.=' Telangana State Medical Council (TSMC) ']")).click();
+    	
+    	Thread.sleep(2000);
+    	wUtil.scrollToParticularWebElement(driver, NmcNumberEdt);
+    	
+    	Thread.sleep(2000);
     	String nmcn = String.valueOf(jUtil.getRandomNum());
     	NmcNumberEdt.sendKeys(nmcn);
-    	Thread.sleep(2000);
     	
-    	ExperianceDrpDwn.click();
+    	Thread.sleep(2000);
+    	wUtil.scrollToParticularWebElement(driver, GraduationDegreeDrpDwn);
+    	
+    	Thread.sleep(2000);
+    	GraduationDegreeDrpDwn.click();
     	Thread.sleep(1000);
-    	driver.findElement(By.xpath("//li[.=' 3 years ']")).click();
-    	Thread.sleep(2000);
+    	driver.findElement(By.xpath("//li[.=' MBBS ']")).click();    	
     	
+    	Thread.sleep(2000);
     	PostGraduationDegreeDrpDwn.click();
-    	Thread.sleep(1000);
     	driver.findElement(By.xpath("//li[.=' MD ']")).click();
-    	Thread.sleep(2000);
     	
+    	Thread.sleep(2000);
+    	wUtil.scrollToParticularWebElement(driver, SpecializationDrpdwn);
+    	
+    	Thread.sleep(2000);
     	SpecializationDrpdwn.click();
     	Thread.sleep(1000);
-    	driver.findElement(By.xpath("//li[.=' Critical Care ']")).click();
-    	Thread.sleep(2000);
+    	driver.findElement(By.xpath("//li[.=' Aerospace Medicine ']")).click();
     	
-    	SuperSpecializationDegreeDwn.click();
+    	Thread.sleep(2000);
+    	SuperSpecializationDegreeDrpdwn.click();
     	Thread.sleep(1000);
     	driver.findElement(By.xpath("//li[.=' DM ']")).click();
     	Thread.sleep(2000);
     	
+    	Thread.sleep(2000);
+    	wUtil.scrollToParticularWebElement(driver, SuperSpecializationDrpdwn);
+    	
     	SuperSpecializationDrpdwn.click();
     	Thread.sleep(1000);
     	driver.findElement(By.xpath("//li[.=' Child & Adolescent Psychiatry ']")).click();
-    	Thread.sleep(2000);
     	
-    	QualificationEdt.sendKeys("MBBS");
     	Thread.sleep(2000);
+    	AdditionalQualificationEdt.sendKeys("MBBS");
     	
-//    	wUtil.scrollToParticularWebElement(driver, ExpertiseEdt);
-    	wUtil.scrollPageDown(1);
+    	Thread.sleep(2000);
+    	wUtil.scrollToParticularWebElement(driver, ExperianceDrpDwn);
+    	
+    	Thread.sleep(2000);
+    	ExperianceDrpDwn.click();
+    	driver.findElement(By.xpath("//li[.=' 5 years ']")).click();
     	
     	Thread.sleep(2000);
     	LanguagesDrpdwn.click();
     	Thread.sleep(1000);
     	driver.findElement(By.xpath("//li[.=' English ']")).click();
-    	Thread.sleep(2000);
+    	Thread.sleep(1000);
+    	driver.findElement(By.xpath("//li[.=' Telugu ']")).click();
+    	Thread.sleep(1000);
+    	driver.findElement(By.xpath("//li[.=' Hindi ']")).click();
+//    	Thread.sleep(2000);
+//    	LanguagesDrpdwn.click();
     	
-    	YearOfAdmissionDrpdwn.click();
     	Thread.sleep(2000);
-    	driver.findElement(By.xpath("//li[.=' 2020 ']")).click();
+    	wUtil.scrollToParticularWebElement(driver, CurrentHospitalEdt);
     	
     	Thread.sleep(2000);
-    	CurrentHospitalOrClinicEdt.sendKeys("abcdef");
-    	Thread.sleep(2000);
+    	CurrentHospitalEdt.sendKeys("Narayana Super Speciality Hospital");
     	
+    	Thread.sleep(2000);
+    	ExpectedConsultationFees.sendKeys("2000");
+    	
+    	Thread.sleep(2000);
     	ExpertiseEdt.sendKeys("Neurosurgery");
-    	Thread.sleep(2000);
     	
+    	Thread.sleep(2000);
     	wUtil.scrollToParticularWebElement(driver, AboutYourselfTextarea);
     	
         Thread.sleep(2000);
@@ -274,221 +294,213 @@ public class ApplicationFormPage {
     	
     	Thread.sleep(2000);
 		wUtil.waitUntilElementVisibleUptoThirtyMin(driver, SubmitBtn);
+		Thread.sleep(2000);
+    	wUtil.scrollToParticularWebElement(driver, SubmitBtn);
+    	Thread.sleep(2000);
 		SubmitBtn.click();
-    	
-//    	wUtil.scrollPageUp(2);
-//    	wUtil.waitUntilElementVisibleUptoThirtyMin(driver, AiImage);
-//    	if(AiImage.isDisplayed())
-//    	{
-//    		Thread.sleep(2000);
-//    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
-//    		Thread.sleep(2000);
-//    		wUtil.waitUntilElementVisibleUptoThirtyMin(driver, SubmitBtn);
-//    		SubmitBtn.click();
-//    		Thread.sleep(2000);
-//    	}
     	    
     }
    	
-   	public void UploadDoctorDetailsNegative(WebDriver driver, String ImagePath, String Name) throws Exception
+   	
+	public void UploadDoctorDetailsNegative(WebDriver driver, String ImagePath, String Name) throws Exception
    	{
-   		WebDriverUtility wUtil = new WebDriverUtility();
-    	ExcelFileUtility eUtil = new ExcelFileUtility();
-    	JavaUtility jUtil = new JavaUtility();
-    	
-    	String AboutYourself = eUtil.readDataFromExcel("Doctor", 24, 1);
-    	
-        driver.findElement(By.xpath("//button[.='Choose File']")).click();
-        
-        Thread.sleep(2000);
-        
-        driver.findElement(By.xpath("//input[@type='file']")).sendKeys(ImagePath);
-        
-        Thread.sleep(2000);
-    	
-    	wUtil.clickOnEscapeButton();
-		
-    	Thread.sleep(2000);
-    	
-    	wUtil.scrollToParticularWebElement(driver, DrProfileNameScrolling);
-    	
-    	Thread.sleep(2000);
-    	
-    	String smcrn = String.valueOf(jUtil.getRandomNum());
-    	
-    	StateMedicalCouncilRegistrationNoEdt.sendKeys(smcrn);
-    	Thread.sleep(2000);
-    	
-    	String nmcn = String.valueOf(jUtil.getRandomNum());
-    	NmcNumberEdt.sendKeys(nmcn);
-    	Thread.sleep(2000);
-    	
-    	ExperianceDrpDwn.click();
-    	Thread.sleep(1000);
-    	driver.findElement(By.xpath("//li[.=' 3 years ']")).click();
-    	Thread.sleep(2000);
-    	
-    	PostGraduationDegreeDrpDwn.click();
-    	Thread.sleep(1000);
-    	driver.findElement(By.xpath("//li[.=' MD ']")).click();
-    	Thread.sleep(2000);
-    	
-    	SpecializationDrpdwn.click();
-    	Thread.sleep(1000);
-    	driver.findElement(By.xpath("//li[.=' Critical Care ']")).click();
-    	Thread.sleep(2000);
-    	
-    	SuperSpecializationDegreeDwn.click();
-    	Thread.sleep(1000);
-    	driver.findElement(By.xpath("//li[.=' DM ']")).click();
-    	Thread.sleep(2000);
-    	
-    	SuperSpecializationDrpdwn.click();
-    	Thread.sleep(1000);
-    	driver.findElement(By.xpath("//li[.=' Child & Adolescent Psychiatry ']")).click();
-    	Thread.sleep(2000);
-    	
-    	QualificationEdt.sendKeys("MBBS");
-    	Thread.sleep(2000);
-    	
-    	wUtil.scrollPageDown(1);
-    	
-    	LanguagesDrpdwn.click();
-    	Thread.sleep(1000);
-    	driver.findElement(By.xpath("//li[.=' English ']")).click();
-    	Thread.sleep(2000);
-    	
-    	YearOfAdmissionDrpdwn.click();
-    	Thread.sleep(2000);
-    	driver.findElement(By.xpath("//li[.=' 2020 ']")).click();
-    	
-    	Thread.sleep(2000);
-    	CurrentHospitalOrClinicEdt.sendKeys("abcdef");
-    	Thread.sleep(2000);
-    	
-    	ExpertiseEdt.sendKeys("Neurosurgery");
-    	Thread.sleep(2000);
-    	
-    	wUtil.scrollToParticularWebElement(driver, AboutYourselfTextarea);
-		Thread.sleep(2000);
-    	AboutYourselfTextarea.sendKeys(AboutYourself);
-    	
-    	Thread.sleep(2000);
-//    	wUtil.scrollPageUp(2);
-//    	wUtil.waitUntilElementVisibleUptoThirtyMin(driver, AiImage);
-    	wUtil.waitForElementToBeVisible(driver, SubmitBtn);
-    	
-    	try 
-    	{
-    		if(SubmitBtn.isDisplayed())
-        	{
-        		Thread.sleep(2000);
-        		System.out.println("Submit button Displayed");
-        	}
-    		AboutYourselfTextarea.clear();
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
-    		Thread.sleep(1000);
+//   		WebDriverUtility wUtil = new WebDriverUtility();
+//    	ExcelFileUtility eUtil = new ExcelFileUtility();
+//    	JavaUtility jUtil = new JavaUtility();
+//    	
+//    	String AboutYourself = eUtil.readDataFromExcel("Doctor", 24, 1);
+//    	
+//        driver.findElement(By.xpath("//button[.='Choose File']")).click();
+//        
+//        Thread.sleep(2000);
+//        
+//        driver.findElement(By.xpath("//input[@type='file']")).sendKeys(ImagePath);
+//        
+//        Thread.sleep(2000);
+//    	
+//    	wUtil.clickOnEscapeButton();
+//		
+//    	Thread.sleep(2000);
+//    	
+//    	wUtil.scrollToParticularWebElement(driver, DrProfileNameScrolling);
+//    	
+//    	Thread.sleep(2000);
+//    	
+//    	String smcrn = String.valueOf(jUtil.getRandomNum());
+//    	
+//    	StateMedicalCouncilRegistrationNoEdt.sendKeys(smcrn);
+//    	Thread.sleep(2000);
+//    	
+//    	String nmcn = String.valueOf(jUtil.getRandomNum());
+//    	NmcNumberEdt.sendKeys(nmcn);
+//    	Thread.sleep(2000);
+//    	
+//    	ExperianceDrpDwn.click();
+//    	Thread.sleep(1000);
+//    	driver.findElement(By.xpath("//li[.=' 3 years ']")).click();
+//    	Thread.sleep(2000);
+//    	
+//    	PostGraduationDegreeDrpDwn.click();
+//    	Thread.sleep(1000);
+//    	driver.findElement(By.xpath("//li[.=' MD ']")).click();
+//    	Thread.sleep(2000);
+//    	
+//    	SpecializationDrpdwn.click();
+//    	Thread.sleep(1000);
+//    	driver.findElement(By.xpath("//li[.=' Critical Care ']")).click();
+//    	Thread.sleep(2000);
+//    	
+//    	SuperSpecializationDegreeDwn.click();
+//    	Thread.sleep(1000);
+//    	driver.findElement(By.xpath("//li[.=' DM ']")).click();
+//    	Thread.sleep(2000);
+//    	
+//    	SuperSpecializationDrpdwn.click();
+//    	Thread.sleep(1000);
+//    	driver.findElement(By.xpath("//li[.=' Child & Adolescent Psychiatry ']")).click();
+//    	Thread.sleep(2000);
+//    	
+//    	QualificationEdt.sendKeys("MBBS");
+//    	Thread.sleep(2000);
+//    	
+//    	wUtil.scrollPageDown(1);
+//    	
+//    	LanguagesDrpdwn.click();
+//    	Thread.sleep(1000);
+//    	driver.findElement(By.xpath("//li[.=' English ']")).click();
+//    	Thread.sleep(2000);
+//    	
+//    	YearOfAdmissionDrpdwn.click();
+//    	Thread.sleep(2000);
+//    	driver.findElement(By.xpath("//li[.=' 2020 ']")).click();
+//    	
+//    	Thread.sleep(2000);
+//    	CurrentHospitalOrClinicEdt.sendKeys("abcdef");
+//    	Thread.sleep(2000);
+//    	
+//    	ExpertiseEdt.sendKeys("Neurosurgery");
+//    	Thread.sleep(2000);
+//    	
+//    	wUtil.scrollToParticularWebElement(driver, AboutYourselfTextarea);
+//		Thread.sleep(2000);
+//    	AboutYourselfTextarea.sendKeys(AboutYourself);
+//    	
+//    	Thread.sleep(2000);
+////    	wUtil.scrollPageUp(2);
+////    	wUtil.waitUntilElementVisibleUptoThirtyMin(driver, AiImage);
+//    	wUtil.waitForElementToBeVisible(driver, SubmitBtn);
+//    	
+//    	try 
+//    	{
+//    		if(SubmitBtn.isDisplayed())
+//        	{
+//        		Thread.sleep(2000);
+//        		System.out.println("Submit button Displayed");
+//        	}
+//    		AboutYourselfTextarea.clear();
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
+//    		Thread.sleep(1000);
+////    		SubmitBtn.click();
+//    		Thread.sleep(1000);
+//    		if(SubmitBtn.isDisplayed())
+//    		{
+//    			wUtil.takeScreenShot(driver, "L_Submit Button Disabled without giving ABOUT YOURSELF TEXT");
+//    		}
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, ExpertiseEdt);
+//    		ExpertiseEdt.clear();
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
+//    		Thread.sleep(1000);
+////    		SubmitBtn.click();
+//    		Thread.sleep(1000);
+//    		if(SubmitBtn.isDisplayed())
+//    		{
+//    			wUtil.takeScreenShot(driver, "M_Submit Button Disabled without giving Expertise");
+//    		}
+//    		Thread.sleep(2000);
+//    		ExpertiseEdt.sendKeys("Neurosurgery");
+//        	Thread.sleep(2000);
+//        	CurrentHospitalOrClinicEdt.clear();
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
+//    		Thread.sleep(1000);
+////    		SubmitBtn.click();
+//    		Thread.sleep(1000);
+//    		if(SubmitBtn.isDisplayed())
+//    		{
+//    			wUtil.takeScreenShot(driver, "N_Submit Button Disabled without giving Current Hospital Or Clinic Name");
+//    		}
+//    		Thread.sleep(2000);
+//        	CurrentHospitalOrClinicEdt.sendKeys("abcdef");
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, QualificationEdt);
+//    		Thread.sleep(1000);
+//    		QualificationEdt.clear();
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
+//    		Thread.sleep(2000);
+////    		SubmitBtn.click();
+//    		Thread.sleep(2000);
+//    		if(SubmitBtn.isDisplayed())
+//    		{
+//    			wUtil.takeScreenShot(driver, "O_Submit Button Disabled without giving Qualification");
+//    		}
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, QualificationEdt);
+//    		Thread.sleep(1000);
+//    		QualificationEdt.sendKeys("MBBS");
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, NmcNumberEdt);
+//    		Thread.sleep(2000);
+//    		NmcNumberEdt.clear();
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
+//    		Thread.sleep(2000);
+////    		SubmitBtn.click();
+//    		Thread.sleep(2000);
+//    		if(SubmitBtn.isDisplayed())
+//    		{
+//    			wUtil.takeScreenShot(driver, "P_Submit Button Disabled without giving NMC Number");
+//    		}
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, NmcNumberEdt);
+//    		Thread.sleep(2000);
+//    		NmcNumberEdt.sendKeys(nmcn);
+//        	Thread.sleep(2000);
+//        	wUtil.scrollToParticularWebElement(driver, StateMedicalCouncilRegistrationNoEdt);
+//    		Thread.sleep(2000);
+//    		StateMedicalCouncilRegistrationNoEdt.clear();
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
+//    		Thread.sleep(2000);
+////    		SubmitBtn.click();
+//    		Thread.sleep(2000);
+//    		if(SubmitBtn.isDisplayed())
+//    		{
+//    			wUtil.takeScreenShot(driver, "Q_Submit Button Disabled without giving State Medical Council Registration Number");
+//    		}
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, StateMedicalCouncilRegistrationNoEdt);
+//    		Thread.sleep(2000);
+//    		StateMedicalCouncilRegistrationNoEdt.sendKeys(smcrn);
+//    		Thread.sleep(2000);
+//    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
+//    		Thread.sleep(2000);
+//    		AboutYourselfTextarea.sendKeys(AboutYourself);
+//    		Thread.sleep(2000);
+//    		if(SubmitBtn.isDisplayed())
+//    		{
+//    			wUtil.takeScreenShot(driver, "R_Submit Button Displayed After All Details Giving");
+//    		}
+//    		Thread.sleep(2000);
 //    		SubmitBtn.click();
-    		Thread.sleep(1000);
-    		if(SubmitBtn.isDisplayed())
-    		{
-    			wUtil.takeScreenShot(driver, "L_Submit Button Disabled without giving ABOUT YOURSELF TEXT");
-    		}
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, ExpertiseEdt);
-    		ExpertiseEdt.clear();
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
-    		Thread.sleep(1000);
-//    		SubmitBtn.click();
-    		Thread.sleep(1000);
-    		if(SubmitBtn.isDisplayed())
-    		{
-    			wUtil.takeScreenShot(driver, "M_Submit Button Disabled without giving Expertise");
-    		}
-    		Thread.sleep(2000);
-    		ExpertiseEdt.sendKeys("Neurosurgery");
-        	Thread.sleep(2000);
-        	CurrentHospitalOrClinicEdt.clear();
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
-    		Thread.sleep(1000);
-//    		SubmitBtn.click();
-    		Thread.sleep(1000);
-    		if(SubmitBtn.isDisplayed())
-    		{
-    			wUtil.takeScreenShot(driver, "N_Submit Button Disabled without giving Current Hospital Or Clinic Name");
-    		}
-    		Thread.sleep(2000);
-        	CurrentHospitalOrClinicEdt.sendKeys("abcdef");
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, QualificationEdt);
-    		Thread.sleep(1000);
-    		QualificationEdt.clear();
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
-    		Thread.sleep(2000);
-//    		SubmitBtn.click();
-    		Thread.sleep(2000);
-    		if(SubmitBtn.isDisplayed())
-    		{
-    			wUtil.takeScreenShot(driver, "O_Submit Button Disabled without giving Qualification");
-    		}
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, QualificationEdt);
-    		Thread.sleep(1000);
-    		QualificationEdt.sendKeys("MBBS");
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, NmcNumberEdt);
-    		Thread.sleep(2000);
-    		NmcNumberEdt.clear();
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
-    		Thread.sleep(2000);
-//    		SubmitBtn.click();
-    		Thread.sleep(2000);
-    		if(SubmitBtn.isDisplayed())
-    		{
-    			wUtil.takeScreenShot(driver, "P_Submit Button Disabled without giving NMC Number");
-    		}
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, NmcNumberEdt);
-    		Thread.sleep(2000);
-    		NmcNumberEdt.sendKeys(nmcn);
-        	Thread.sleep(2000);
-        	wUtil.scrollToParticularWebElement(driver, StateMedicalCouncilRegistrationNoEdt);
-    		Thread.sleep(2000);
-    		StateMedicalCouncilRegistrationNoEdt.clear();
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
-    		Thread.sleep(2000);
-//    		SubmitBtn.click();
-    		Thread.sleep(2000);
-    		if(SubmitBtn.isDisplayed())
-    		{
-    			wUtil.takeScreenShot(driver, "Q_Submit Button Disabled without giving State Medical Council Registration Number");
-    		}
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, StateMedicalCouncilRegistrationNoEdt);
-    		Thread.sleep(2000);
-    		StateMedicalCouncilRegistrationNoEdt.sendKeys(smcrn);
-    		Thread.sleep(2000);
-    		wUtil.scrollToParticularWebElement(driver, SubmitBtn);
-    		Thread.sleep(2000);
-    		AboutYourselfTextarea.sendKeys(AboutYourself);
-    		Thread.sleep(2000);
-    		if(SubmitBtn.isDisplayed())
-    		{
-    			wUtil.takeScreenShot(driver, "R_Submit Button Displayed After All Details Giving");
-    		}
-    		Thread.sleep(2000);
-    		SubmitBtn.click();
-		} catch (Exception e) 
-    	{
-			System.out.println("Application Form Page Not Displayed");
-		}
-    	
+//		} catch (Exception e) 
+//    	{
+//			System.out.println("Application Form Page Not Displayed");
+//		}
+//    	
     	
     }
     	

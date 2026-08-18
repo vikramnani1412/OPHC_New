@@ -179,6 +179,7 @@ public class DocumentUploadPage {
 	    
 	    Thread.sleep(2000);
 	    
+	    wUtil.scrollExactToParticularWebElement(driver, SubmitDocumentsBtn);
 	    SubmitDocumentsBtn.click();
 	    Thread.sleep(2000);
 	    
