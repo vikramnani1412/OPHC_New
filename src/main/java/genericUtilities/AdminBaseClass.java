@@ -77,7 +77,7 @@ public class AdminBaseClass extends CommonBaseClass {
 
         AdminLoginPage loginPage = new AdminLoginPage(driver);
 
-        loginPage.loginToAdmin(username, password);
+        loginPage.loginToAdmin(driver, username, password);
 
         System.out.println("Admin Login Successful");
     }

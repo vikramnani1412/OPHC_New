@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import adminObjectRepository.AdminDashboardPage;
 import adminObjectRepository.AdminLoginPage;
@@ -39,6 +40,7 @@ import genericUtilities.WebDriverUtility;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import patientObjectRepository.AppointmentConfirmedPage;
 import patientObjectRepository.AppointmentsPage;
+import patientObjectRepository.DoctorDetailsPage;
 import patientObjectRepository.FeeDetailsPage;
 import patientObjectRepository.FindDoctorsPage;
 import patientObjectRepository.HowDoYouWantToConsultPage;
@@ -51,7 +53,8 @@ import patientObjectRepository.RazorpayNetBankingPage;
 import patientObjectRepository.RazorpayOPHC;
 import patientObjectRepository.UploadMedicalReportsAfterAppointmentConfirmPage;
 
-public class UpdatedOphc {
+@Listeners(genericUtilities.ListenersImplementationClass.class)
+public class UpdatedOphcTest {
 
     WebDriverUtility    wUtil = new WebDriverUtility();
     JavaUtility         jUtil = new JavaUtility();
@@ -225,7 +228,7 @@ public class UpdatedOphc {
             System.out.println("========================================");
 
         } finally {
-//            driver.quit();
+            driver.quit();
         }
     }
 
@@ -247,7 +250,7 @@ public class UpdatedOphc {
             driver.get(adminURL);
 
             AdminLoginPage alPage = new AdminLoginPage(driver);
-            alPage.loginToAdmin(adminUsername, adminPassword);
+            alPage.loginToAdmin(driver, adminUsername, adminPassword);
             Thread.sleep(2000);
 
             AdminDashboardPage adPage = new AdminDashboardPage(driver);
@@ -268,7 +271,7 @@ public class UpdatedOphc {
             System.out.println("Registered Doctor Rejected by Admin");
 
         } finally {
-//            driver.quit();
+            driver.quit();
         }
     }
 
@@ -383,7 +386,7 @@ public class UpdatedOphc {
             System.out.println("Re Submission Completed");
 
         } finally {
-//            driver.quit();
+            driver.quit();
         }
     }
 
@@ -411,7 +414,7 @@ public class UpdatedOphc {
             System.out.println("Admin Started Visiting " + DataStore.doctorName + " Profile");
 
             AdminLoginPage alPage = new AdminLoginPage(driver);
-            alPage.loginToAdmin(adminUsername, adminPassword);
+            alPage.loginToAdmin(driver, adminUsername, adminPassword);
             Thread.sleep(2000);
 
             AdminDashboardPage adPage = new AdminDashboardPage(driver);
@@ -481,8 +484,8 @@ public class UpdatedOphc {
             System.out.println("Patient Registration Started " + patientPhoneNo);
 
             // ── Patient registration ──────────────────────────────────────
-            PatientHomePage phPage = new PatientHomePage(driver);
-            phPage.getLoginBtn().click();
+//            PatientHomePage phPage = new PatientHomePage(driver);
+//            phPage.getLoginBtn().click();
 
             PatientLoginPage plPage = new PatientLoginPage(driver);
             plPage.clickOnRegisterLnk(driver);
@@ -512,57 +515,73 @@ public class UpdatedOphc {
             pPage.getPageCloseBtn().click();
             Thread.sleep(2000);
 
+         // Select same doctor created in DoctorAddingSlotTest
             FindDoctorsPage fdocPage = new FindDoctorsPage(driver);
-            fdocPage.selectingDoctor();
+
+            fdocPage.selectingDoctor(
+                    driver,
+                    DataStore.doctorName
+            );
+
             Thread.sleep(2000);
 
-            FeeDetailsPage fdPage = new FeeDetailsPage(driver);
-            fdPage.clickOnFrstAvailableSlot(driver);
-            Thread.sleep(2000);
-            fdPage.clickOnBookNowBtn();
-            Thread.sleep(1000);
+            DoctorDetailsPage ddPage = new DoctorDetailsPage(driver);
 
-            // ── Consultation type ───────────────────────────────────────────
-            HowDoYouWantToConsultPage hPage = new HowDoYouWantToConsultPage(driver);
+            ddPage.BookingAppointment(driver);
+
+            // Consultation type
+            HowDoYouWantToConsultPage hPage =
+                    new HowDoYouWantToConsultPage(driver);
+
             hPage.CompleteHowDoYouWantToConsultDetailsAndClickOnContinueBtn();
+
             Thread.sleep(2000);
 
-            // ── Razorpay payment ─────────────────────────────────────────────
-            WebElement Frame = driver.findElement(By.xpath("//iframe[@class='razorpay-checkout-frame']"));
+            // Razorpay payment
+            WebElement Frame = driver.findElement(
+                    By.xpath("//iframe[@class='razorpay-checkout-frame']")
+            );
+
             wUtil.waitForElementToBeClickable(driver, Frame);
+
             driver.switchTo().frame(Frame);
 
             RazorpayOPHC rPage = new RazorpayOPHC(driver);
+
             rPage.getNetBankingLnk().click();
+
             Thread.sleep(2000);
 
-            RazorpayNetBankingPage rnPage = new RazorpayNetBankingPage(driver);
-            rnPage.bookSlotUsingSBIbank(driver);
-            Thread.sleep(1000);
+            RazorpayNetBankingPage rnPage =
+                    new RazorpayNetBankingPage(driver);
 
-            // ── Patient details & reports ───────────────────────────────────
+            rnPage.bookSlotUsingSBIbank(driver);
+
+            Thread.sleep(2000);
+
             PatientDetailsPage pdPage = new PatientDetailsPage(driver);
             pdPage.givingPatientDetails(patientFullName);
-
+            
+            // Upload medical report
             UploadMedicalReportsAfterAppointmentConfirmPage umraaPage =
                     new UploadMedicalReportsAfterAppointmentConfirmPage(driver);
+
             umraaPage.uploadingMedicalReports(driver);
 
-            // ── Confirm booking ─────────────────────────────────────────────
-            AppointmentConfirmedPage acPage = new AppointmentConfirmedPage(driver);
-            String bookingId = acPage.getBookingIDandClickContinue(driver);
-            System.out.println("Booking ID from Confirm Page: " + bookingId);
+            // Appointment confirmation
+            AppointmentConfirmedPage acPage =
+                    new AppointmentConfirmedPage(driver);
 
-            AppointmentsPage aPage = new AppointmentsPage(driver);
-            aPage.checkingAppointmentBookedOrNot(driver, bookingId);
-            Thread.sleep(2000);
+            String bookingId =
+                    acPage.getBookingIDandClickContinue(driver);
 
-            pPage.getPatientProfileIcon().click();
-            Thread.sleep(2000);
-            pPage.getLogoutLnk().click();
+            System.out.println(
+                    "Booking ID from Confirm Page : " + bookingId
+            );
+            
 
         } finally {
-//            driver.quit();
+            driver.quit();
         }
     }
 }

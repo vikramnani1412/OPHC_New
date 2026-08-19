@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import genericUtilities.WebDriverUtility;
+
 public class AdminDashboardPage {
 
 	//Finding WebElements Using @FindBy Annotations
@@ -51,8 +53,13 @@ public class AdminDashboardPage {
 	
 	//Business Libraries
 
+	WebDriverUtility wUtil = new WebDriverUtility();
+	
 	public void clickOnDoctorIcon(WebDriver driver) throws Exception
 	{
+		
+		
+		wUtil.waitForElementToBeClickable(driver, DoctorIcon);
 		Thread.sleep(2000);
 		driver.navigate().refresh();
 		((JavascriptExecutor)driver)
@@ -61,6 +68,7 @@ public class AdminDashboardPage {
 	
 	public void clickOnPatientIcon(WebDriver driver) throws Exception
 	{
+		wUtil.waitForElementToBeClickable(driver, PatientIcon);
 		Thread.sleep(2000);
 		driver.navigate().refresh();
 		((JavascriptExecutor)driver)
@@ -69,6 +77,7 @@ public class AdminDashboardPage {
 	
 	public void clickOnDashboardIcon(WebDriver driver) throws Exception
 	{
+		wUtil.waitForElementToBeClickable(driver, DashboardIcon);
 		Thread.sleep(2000);
 		driver.navigate().refresh();
 		((JavascriptExecutor)driver)

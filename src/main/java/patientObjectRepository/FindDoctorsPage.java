@@ -84,13 +84,16 @@ public class FindDoctorsPage {
     
     //Business Library
     
-    public void selectingDoctor() throws Exception
+    public void selectingDoctor(WebDriver driver, String DoctorName) throws Exception
     {
+        // String DoctorName = DoctorXyugProfileName.getText();
+        // DoctorXyugBookNowBtn;
+        
         Thread.sleep(2000);
-        String DoctorName = DoctorXyugProfileName.getText();
         System.out.println("Patient searching for Doctor : "+DoctorName);
         Thread.sleep(2000);
-        DoctorXyugBookNowBtn.click();
+        driver.findElement(By.xpath("//h6[.='"+DoctorName+"']/../../following-sibling::div//button[.=' Book Now ']")).click();
+        
     }
 	
 }

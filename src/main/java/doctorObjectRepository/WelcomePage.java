@@ -63,6 +63,9 @@ public class WelcomePage {
     
     @FindBy(xpath="(//div[@class='slot-item ng-star-inserted'])[1]")private WebElement FirstAvailableSlotInSelectTimeSlotPage;
     
+    @FindBy(xpath = "//h2[.='Dr. Vicky']")private WebElement DoctorName;
+
+    
     
     
     //Rule-2:Create a constructor to initilise these elements
@@ -154,6 +157,10 @@ public class WelcomePage {
     
     public WebElement getFirstAvailableSlotInSelectTimeSlotPage() {
         return FirstAvailableSlotInSelectTimeSlotPage;
+    }
+    
+    public String getDoctorName() {
+        return DoctorName.getText().trim();
     }
     
     // Business Library

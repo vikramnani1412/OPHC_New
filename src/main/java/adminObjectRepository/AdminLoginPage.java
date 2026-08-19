@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import genericUtilities.PropertyFileUtility;
+import genericUtilities.WebDriverUtility;
 
 public class AdminLoginPage {
 
@@ -44,8 +45,11 @@ public class AdminLoginPage {
 	
 	//Business Libraries
 	
-	public void loginToAdmin(String USERNAME, String PASSWORD) throws Throwable
+	public void loginToAdmin(WebDriver driver, String USERNAME, String PASSWORD) throws Throwable
 	{		
+		WebDriverUtility wUtil = new WebDriverUtility();
+		
+		wUtil.waitForElementToBeVisible(driver, LoginBtn);
 		UserNameEdt.sendKeys(USERNAME);
 		Thread.sleep(2000);
 		PasswordEdt.sendKeys(PASSWORD);

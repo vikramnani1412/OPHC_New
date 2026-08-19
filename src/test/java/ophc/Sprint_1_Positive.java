@@ -169,7 +169,7 @@ public class Sprint_1_Positive {
         System.out.println("Admin = " + DataStore.doctorName + " Admin Started Visiting Doctor Profile");
 
         AdminLoginPage alPage = new AdminLoginPage(driver);
-        alPage.loginToAdmin(adminUsername, adminPassword);
+        alPage.loginToAdmin(driver, adminUsername, adminPassword);
 
         AdminDashboardPage adPage = new AdminDashboardPage(driver);
         adPage.clickOnDoctorIcon(driver);
@@ -279,7 +279,7 @@ public class Sprint_1_Positive {
         System.out.println("Re Visiting Doctors Registration");
 
         AdminLoginPage alPage = new AdminLoginPage(driver);
-        alPage.loginToAdmin(adminUsername, adminPassword);
+        alPage.loginToAdmin(driver, adminUsername, adminPassword);
 
         AdminDashboardPage adPage = new AdminDashboardPage(driver);
         adPage.clickOnDoctorIcon(driver);

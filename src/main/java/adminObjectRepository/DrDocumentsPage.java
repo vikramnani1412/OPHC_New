@@ -1,5 +1,7 @@
 package adminObjectRepository;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -187,59 +189,79 @@ public class DrDocumentsPage {
 	}
 	
 	
-	public void ApprovingAllDocuments(WebDriver driver, int Rating, String ConsultationFee) throws Exception
-	{
-		Thread.sleep(2000);
-		AadharCardOpenBtn.click();
-		Thread.sleep(2000);
-		ApproveBtn.click();
-		Thread.sleep(2000);
-		BackArrow.click();		
-		Thread.sleep(2000);
-		PanCardOpenBtn.click();
-		Thread.sleep(2000);
-		ApproveBtn.click();
-		Thread.sleep(2000);
-		BackArrow.click();
-		Thread.sleep(2000);
-		ExperienceCertificateOpenBtn.click();
-		Thread.sleep(2000);
-		ApproveBtn.click();
-		Thread.sleep(2000);
-		BackArrow.click();
-		Thread.sleep(2000);
-		ClinicOrHospitalProofOpenBtn.click();
-		Thread.sleep(2000);
-		ApproveBtn.click();
-		Thread.sleep(2000);
-		BackArrow.click();
-		Thread.sleep(2000);
-		MedicalCertificateOpenBtn.click();
-		Thread.sleep(2000);
-		ApproveBtn.click();
-		Thread.sleep(2000);
-		BackArrow.click();
-		Thread.sleep(2000);
-		SMCCertificateOpenBtn.click();
-		Thread.sleep(2000);
-		ApproveBtn.click();
-		Thread.sleep(2000);
-		BackArrow.click();
-		Thread.sleep(2000);
-		ApproveWithRatingBtn.click();
-		Thread.sleep(2000);
-		for(int i=1;i<=Rating;i++)
-		{
-			driver.findElement(By.xpath("(//span[.=' ★ '])["+i+"]")).click();
-		}
-		Thread.sleep(2000);
-		ConsultationFeeEdt.clear();
-		Thread.sleep(2000);
-		ConsultationFeeEdt.sendKeys(ConsultationFee);
-		Thread.sleep(2000);
-		ApproveKycBtn.click();
-		Thread.sleep(2000);
-		
+	public void ApprovingAllDocuments(WebDriver driver, int Rating, String ConsultationFee) throws Exception {
+
+	    // Get all rejected document cards
+	    List<WebElement> AllRejectedDocs =
+	            driver.findElements(By.xpath("//div[@class='doc-card']"));
+
+	    System.out.println(
+	            "Total Rejected Documents Found : " + AllRejectedDocs.size()
+	    );
+
+	    // Traverse through all rejected documents
+	    for (int i = 0; i < AllRejectedDocs.size(); i++) {
+
+	        // Re-fetch document cards because DOM changes after Back
+	        AllRejectedDocs = driver.findElements(
+	                By.xpath("//div[@class='doc-card']")
+	        );
+
+	        // Get current rejected document
+	        WebElement document = AllRejectedDocs.get(i);
+
+	        System.out.println(
+	                "Opening Rejected Document : " + (i + 1)
+	        );
+
+	        // Open rejected document
+	        driver.findElement(By.xpath("(//div[@class='doc-card']//span[.='Open'])["+i+1+"]")).click();
+
+	        Thread.sleep(2000);
+
+	        // Approve the rejected document
+	        ApproveBtn.click();
+
+	        Thread.sleep(2000);
+
+	        // Go back to document list
+	        BackArrow.click();
+
+	        Thread.sleep(2000);
+	    }
+
+
+	    // Approve with Rating
+	    ApproveWithRatingBtn.click();
+
+	    Thread.sleep(2000);
+
+
+	    // Select Rating
+	    for (int i = 1; i <= Rating; i++) {
+
+	        driver.findElement(
+	                By.xpath("(//span[.=' ★ '])[" + i + "]")
+	        ).click();
+	    }
+
+	    Thread.sleep(2000);
+
+
+	    // Enter Consultation Fee
+	    ConsultationFeeEdt.clear();
+
+	    Thread.sleep(1000);
+
+	    ConsultationFeeEdt.sendKeys(ConsultationFee);
+
+	    Thread.sleep(2000);
+
+
+	    // Final KYC Approval
+	    ApproveKycBtn.click();
+
+	    Thread.sleep(2000);
 	}
 	
 }
