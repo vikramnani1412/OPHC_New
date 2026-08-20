@@ -119,35 +119,35 @@
     <plugins>
 
         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>3.5.6</version>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.5.6</version>
 
-            <configuration>
+    <configuration>
 
-                <!-- TestNG Suite -->
-                <suiteXmlFiles>
-                    <suiteXmlFile>DoctorAddingSlotANDPatientBookingSlot.xml</suiteXmlFile>
-                    <suiteXmlFile>Total_OPHC_Flow_Test.xml</suiteXmlFile>
-                </suiteXmlFiles>
+        <!-- TestNG Suites -->
+        <suiteXmlFiles>
 
-                <!-- Optional JVM arguments -->
-                <argLine>-Dfile.encoding=UTF-8</argLine>
+            <suiteXmlFile>src/test/resources/DoctorAddingSlotANDPatientBookingSlot.xml</suiteXmlFile>
 
-                <!-- Don't fail if no tests are found -->
-                <failIfNoTests>false</failIfNoTests>
+            <suiteXmlFile>src/test/resources/Total_OPHC_Flow_Test.xml</suiteXmlFile>
 
-                <!-- Print summary after execution -->
-                <printSummary>true</printSummary>
+        </suiteXmlFiles>
 
-                <!-- Reuse JVM -->
-                <reuseForks>true</reuseForks>
+        <!-- JVM arguments -->
+        <argLine>-Dfile.encoding=UTF-8</argLine>
 
-                <!-- One JVM process -->
-                <forkCount>1</forkCount>
+        <!-- Print execution summary -->
+        <printSummary>true</printSummary>
 
-            </configuration>
-        </plugin>
+        <!-- Reuse JVM -->
+        <reuseForks>true</reuseForks>
+
+        <!-- One JVM -->
+        <forkCount>1</forkCount>
+
+    </configuration>
+</plugin>
 
         <!-- Added: maven-compiler-plugin pinned to a current version,
              consistent with the Java 17 source/target set above -->
