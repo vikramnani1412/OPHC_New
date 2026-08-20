@@ -63,7 +63,7 @@ public class WelcomePage {
     
     @FindBy(xpath="(//div[@class='slot-item ng-star-inserted'])[1]")private WebElement FirstAvailableSlotInSelectTimeSlotPage;
     
-    @FindBy(xpath = "//h2[.='Dr. Vicky']")private WebElement DoctorName;
+    @FindBy(xpath = "//h2[.='Dr. Xyug']")private WebElement DoctorName;
 
     
     
