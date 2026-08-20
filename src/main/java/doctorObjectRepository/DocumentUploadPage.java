@@ -1,10 +1,15 @@
 package doctorObjectRepository;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import genericUtilities.ExcelFileUtility;
 import genericUtilities.WebDriverUtility;
@@ -157,7 +162,19 @@ public class DocumentUploadPage {
 //	    Thread.sleep(2000);
 //	    UploadClinicOrHospitalAffiliationProofIcon.sendKeys(AffiliationProof);
 	    Thread.sleep(2000);
-	    TermsChckBox.click();
+//	    TermsChckBox.click();
+	    
+	 // Scroll element into view
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    js.executeScript("arguments[0].scrollIntoView({block: 'center'});", TermsChckBox);
+
+	    // Click standard element or perform JS click fallback
+	    try {
+	    	TermsChckBox.click();
+	    } catch (Exception e) {
+	        js.executeScript("arguments[0].click();", TermsChckBox);
+	    }
+	    
 	    Thread.sleep(2000);
 	    GuidelinesChckbox.click();
 	    Thread.sleep(2000);

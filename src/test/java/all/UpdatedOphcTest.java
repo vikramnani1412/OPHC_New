@@ -115,15 +115,14 @@ public class UpdatedOphcTest {
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-infobars");
         options.addArguments("--disable-save-password-bubble");
-
+        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--start-maximized");
+        
         Map<String, Object> prefs = new HashMap<>();
 
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
-        prefs.put(
-                "profile.default_content_setting_values.notifications",
-                2
-        );
+        prefs.put("profile.default_content_setting_values.notifications", 2);
 
         options.setExperimentalOption("prefs", prefs);
 
