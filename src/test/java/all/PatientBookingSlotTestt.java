@@ -18,7 +18,7 @@ import patientObjectRepository.RazorpayOPHC;
 import patientObjectRepository.UploadMedicalReportsAfterAppointmentConfirmPage;
 
 @Listeners(genericUtilities.ListenersImplementationClass.class)
-public class PatientBookingSlotTest extends PatientBaseClass {
+public class PatientBookingSlotTestt extends PatientBaseClass {
 
     WebDriverUtility wUtil = new WebDriverUtility();
 
