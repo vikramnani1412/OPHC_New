@@ -128,6 +128,7 @@
                 <!-- TestNG Suite -->
                 <suiteXmlFiles>
                     <suiteXmlFile>DoctorAddingSlotANDPatientBookingSlot.xml</suiteXmlFile>
+                    <suiteXmlFile>Total_OPHC_Flow_Test.xml</suiteXmlFile>
                 </suiteXmlFiles>
 
                 <!-- Optional JVM arguments -->
