@@ -128,9 +128,9 @@
         <!-- TestNG Suites -->
         <suiteXmlFiles>
 
-            <suiteXmlFile>src/test/resources/DoctorAddingSlotANDPatientBookingSlot.xml</suiteXmlFile>
+            <suiteXmlFile>DoctorAddingSlotANDPatientBookingSlot.xml</suiteXmlFile>
 
-            <suiteXmlFile>src/test/resources/Total_OPHC_Flow_Test.xml</suiteXmlFile>
+            <suiteXmlFile>Total_OPHC_Flow_Test.xml</suiteXmlFile>
 
         </suiteXmlFiles>
 
